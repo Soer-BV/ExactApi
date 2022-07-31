@@ -3,7 +3,7 @@ Exact Globe PHP API with Clickker
 
 Install via composer:
 ````
-composer require Soer-BV/ExactApi
+composer require soerbv/exactapi
 ````
 
 Usage:
