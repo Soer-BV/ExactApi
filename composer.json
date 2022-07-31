@@ -1,0 +1,27 @@
+{
+  "name": "Soer-BV/ExactApi",
+  "description": "A PHP Client for Exact Globe",
+  "type": "library",
+  "keywords": [
+    "exact globe",
+    "api",
+    "php"
+  ],
+  "homepage": "https:/www.soer.nl",
+  "license": "GNU-LICENSE-3.0",
+  "authors": [
+    {
+      "name": "Rick de Boer",
+      "email": "r.deboer@soer.nl"
+    }
+  ],
+  "require": {
+    "php": ">=7.4.0",
+    "ext-curl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "SoerBV\\Api\\": "src"
+    }
+  }
+}
