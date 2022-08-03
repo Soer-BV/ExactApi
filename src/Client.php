@@ -79,7 +79,7 @@ class Client
       */
      public function getItemByCode($code)
      {
-         return $this->sendRequest("api/Account/ByItemCode/" . $code, "GET");
+         return $this->sendRequest("api/Item/ByItemCode/" . $code, "GET");
      }
 
      public function getSupplierInfo($code)
@@ -87,14 +87,15 @@ class Client
             return $this->sendRequest("api/Account/ByCred/" . $code, "GET");
      }
 
-     public function getAllAccounts($start, $limit, $changeDate = null)
+     public function getAllAccounts($start, $limit, $changeDate = null, $customerType = null)
      {
          if ($limit > 100) return "Limit is higher than allowed. The maximum amount of accounts is 100.";
 
          $params = array(
              'skip' => $start,
              'take' => $limit,
-             'changeDate' => $changeDate
+             'changeDate' => $changeDate,
+             'CustomerType' => $customerType
          );
 
          return $this->sendRequest('api/Account', 'GET', $params);
