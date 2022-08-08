@@ -63,7 +63,7 @@ class Client
      */
      public function getAllItems($start, $limit, $changeDate = null)
      {
-         if ($limit > 100) return "Limit is higher than allowed. The maximum amount of items is 100.";
+         if ($limit > 500) return "Limit is higher than allowed. The maximum amount of items is 500.";
 
          $params = array(
              'skip' => $start,
@@ -89,7 +89,7 @@ class Client
 
      public function getAllAccounts($start, $limit, $changeDate = null, $customerType = null)
      {
-         if ($limit > 100) return "Limit is higher than allowed. The maximum amount of accounts is 100.";
+         if ($limit > 500) return "Limit is higher than allowed. The maximum amount of accounts is 500.";
 
          $params = array(
              'skip' => $start,
@@ -122,4 +122,35 @@ class Client
         );
         return $this->sendRequest("api/SalesOrder/" . $orderNumber . "/Fulfill/", "GET", $params);
     }
+
+    public function retrieveAllPurchaseOrders($start, $limit, $changeDate = null)
+    {
+        if ($limit > 500) return "Limit is higher than allowed. The maximum amount of purchase orders is 500.";
+
+        $params = array(
+            'skip' => $start,
+            'take' => $limit,
+            'changeDate' => $changeDate
+        );
+
+        return $this->sendRequest("api/PurchaseOrder", "GET", $params);
+    }
+
+    public function retrievePurchaseOrder($orderNumber)
+    {
+        return $this->sendRequest("api/PurchaseOrder/ByNumber/" . $orderNumber, "GET");
+    }
+
+    public function getItemStock($itemCode = null, $warehouse = null, $start = null, $limit = null, $stockDate = null)
+    {
+        $params = array(
+            'itemCode' => $itemCode,
+            'warehouse' => $warehouse,
+            'skip' => $start,
+            'limit' => $limit,
+            'stockDate' => $stockDate
+        );
+        return $this->sendRequest("api/Stock/Current", "GET", $params);
+    }
+    
 }
