@@ -152,5 +152,18 @@ class Client
         );
         return $this->sendRequest("api/Stock/Current", "GET", $params);
     }
-    
+
+    public function sendCustomQuery($query)
+    {
+        $verificationCode = json_decode($this->sendRequest("api/CustomQuery", "GET", [], $query));
+        $verificationCode = $verificationCode->VerificationCode;
+
+        $post = array(
+            'query' => $query,
+            'verificationCode' => $verificationCode
+        );
+
+        return $this->sendRequest("api/CustomQuery", "POST", [], json_encode($post));
+    }
+
 }
