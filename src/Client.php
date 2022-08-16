@@ -166,4 +166,9 @@ class Client
         return $this->sendRequest("api/CustomQuery", "POST", [], json_encode($post));
     }
 
+    public function updateItem($data)
+    {
+        return $this->sendRequest("api/Item", "PUT", [], json_encode($data));
+    }
+
 }
