@@ -35,7 +35,7 @@ class Client
                 }
                 break;
             case "PUT":
-                curl_setopt($curl, CURLOPT_PUT, 1);
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
                 if ($data) {
                     curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
                 }
@@ -168,7 +168,7 @@ class Client
 
     public function updateItem($data)
     {
-        return $this->sendRequest("api/Item", "PUT", [], json_encode($data));
+        return $this->sendRequest("api/Item", "PUT", [], $data);
     }
 
 }
