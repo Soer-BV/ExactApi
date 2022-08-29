@@ -141,14 +141,15 @@ class Client
         return $this->sendRequest("api/PurchaseOrder/ByNumber/" . $orderNumber, "GET");
     }
 
-    public function getItemStock($itemCode = null, $warehouse = null, $start = null, $limit = null, $stockDate = null)
+    public function getItemStock($itemCode = null, $warehouse = null, $start = null, $limit = null, $stockDate = null, $changeDate = null)
     {
         $params = array(
             'itemCode' => $itemCode,
             'warehouse' => $warehouse,
             'skip' => $start,
             'limit' => $limit,
-            'stockDate' => $stockDate
+            'stockDate' => $stockDate,
+            'changeDate' => $changeDate
         );
         return $this->sendRequest("api/Stock/Current", "GET", $params);
     }
