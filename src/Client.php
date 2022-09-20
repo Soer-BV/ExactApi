@@ -172,4 +172,16 @@ class Client
         return $this->sendRequest("api/Item", "PUT", [], $data);
     }
 
+    public function newStockCount($itemcode, $quantity, $grtbk, $description = null)
+    {
+        $data = array(
+            'Itemcode' => $itemcode,
+            'Quantity' => $quantity,
+            'Description' => $description,
+            'GLAccountCost' => $grtbk
+        );
+
+        return $this->sendRequest("/api/Stock", "POST", [], $data);
+    }
+
 }
