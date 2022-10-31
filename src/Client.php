@@ -176,7 +176,7 @@ class Client
     {
         $data = array(
             'Itemcode' => $itemcode,
-            'Warehouse' => "1   "
+            'Warehouse' => '1   ',
             'Quantity' => $quantity,
             'Description' => $description,
             'GLAccountCost' => $grtbk
