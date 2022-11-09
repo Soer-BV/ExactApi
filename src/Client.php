@@ -31,7 +31,7 @@ class Client
             case "POST":
                 curl_setopt($curl, CURLOPT_POST, 1);
                 if ($data) {
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
                 }
                 break;
             case "PUT":
@@ -189,6 +189,7 @@ class Client
     {
         $data = array(
             'Itemcode' => $itemcode,
+            'Warehouse' => '1   ',
             'Quantity' => $quantity,
             'Description' => $description,
             'GLAccountCost' => $grtbk
