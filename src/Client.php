@@ -106,6 +106,19 @@ class Client
         return $this->sendRequest("api/SalesOrder/ByNumber/" . $orderNumber, "GET");
     }
 
+    public function retrieveAllSalesOrders($start, $limit, $changeDate = null)
+    {
+        if ($limit > 500) return "Limit is higher than allowed. The maximum amount of sales orders is 500.";
+
+        $params = array(
+            'skip' => $start,
+            'take' => $limit,
+            'modified' => $changeDate
+        );
+
+        return $this->sendRequest('api/SalesOrder', 'GET', $params);
+    }
+
     public function lockSalesOrder($orderNumber)
     {
         return $this->sendRequest("api/SalesOrder/" . $orderNumber . "/Lock/", "GET");
