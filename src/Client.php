@@ -19,6 +19,9 @@ class Client
         $this->apiKey = $apiKey;
     }
 
+    /**
+     * @throws Exception
+     */
     public function sendRequest($endpoint, $method, $params = [], $data = null)
     {
         $curl = curl_init();
@@ -51,9 +54,15 @@ class Client
             'administration: ' . $this->administration,
             'Content-Type: application/json'
         ));
-
+        $headerInfo = curl_getinfo($curl);
         $result = curl_exec($curl);
         curl_close($curl);
+
+        if(! in_array($headerInfo['http_code'], [200, 201, 204])) {
+            $result['error'] = true;
+            $result['errorcode'] = $headerInfo['http_code'];
+            throw new Exception("Invalid API response" . $result['errorcode']);
+        }
 
         return $result;
     }
