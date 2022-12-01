@@ -59,9 +59,7 @@ class Client
         curl_close($curl);
 
         if(! in_array($headerInfo['http_code'], [200, 201, 204])) {
-            $result['error'] = true;
-            $result['errorcode'] = $headerInfo['http_code'];
-            throw new Exception("Invalid API response" . $result['errorcode']);
+            throw new Exception("Invalid API response" . $headerInfo['http_code']);
         }
 
         return $result;
