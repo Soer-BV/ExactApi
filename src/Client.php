@@ -123,6 +123,11 @@ class Client
         return $this->sendRequest('api/SalesOrder', 'GET', $params);
     }
 
+    public function createSalesOrder($data)
+    {
+        return $this->sendRequest("/api/SalesOrder", "POST", [], $data);
+    }
+
     public function lockSalesOrder($orderNumber)
     {
         return $this->sendRequest("api/SalesOrder/" . $orderNumber . "/Lock/", "GET");
