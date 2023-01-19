@@ -139,8 +139,12 @@ class Client
     }
 
     public function fulfillSalesOrder($orderNumber, $date) {
+        if(is_null($orderNumber) || is_null($date)) {
+            return 'The salesOrderNumber and date fields are mandatory.';
+        }
         $params = array(
-            'date' => $date
+            'salesOrderNumber' => $orderNumber,
+            'processDate' => $date
         );
         return $this->sendRequest("api/SalesOrder/" . $orderNumber . "/Fulfill/", "GET", $params);
     }
