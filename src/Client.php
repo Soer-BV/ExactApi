@@ -1,7 +1,6 @@
 <?php
 
 namespace SoerBV\Api;
-
 /**
  * @author Rick de Boer <r.deboer@soer.nl>
  */
@@ -54,8 +53,17 @@ class Client
             'administration: ' . $this->administration,
             'Content-Type: application/json'
         ));
-        $headerInfo = curl_getinfo($curl);
+
+
         $result = curl_exec($curl);
+        $headerInfo = curl_getinfo($curl);
+        // throw error if $result returns other header then status 200
+        $acceptedHeaders = [200, 201, 204];
+
+        if ($headerInfo['http_code'] != in_array($headerInfo['http_code'], $acceptedHeaders)) {
+            throw new Exception('Status' . $headerInfo['http_code'] . ' received: ' . $result);
+        }
+
         curl_close($curl);
 
 
@@ -105,11 +113,17 @@ class Client
          return $this->sendRequest('api/Account', 'GET', $params);
      }
 
+    /**
+     * @throws Exception
+     */
     public function retrieveSalesOrder($orderNumber)
     {
         return $this->sendRequest("api/SalesOrder/ByNumber/" . $orderNumber, "GET");
     }
 
+    /**
+     * @throws Exception
+     */
     public function retrieveAllSalesOrders($start, $limit, $changeDate = null)
     {
         if ($limit > 500) return "Limit is higher than allowed. The maximum amount of sales orders is 500.";
@@ -123,21 +137,33 @@ class Client
         return $this->sendRequest('api/SalesOrder', 'GET', $params);
     }
 
+    /**
+     * @throws Exception
+     */
     public function createSalesOrder($data)
     {
         return $this->sendRequest("/api/SalesOrder", "POST", [], $data);
     }
 
+    /**
+     * @throws Exception
+     */
     public function lockSalesOrder($orderNumber)
     {
         return $this->sendRequest("api/SalesOrder/" . $orderNumber . "/Lock/", "GET");
     }
 
+    /**
+     * @throws Exception
+     */
     public function unlockSalesOrder($orderNumber)
     {
         return $this->sendRequest("api/SalesOrder/" . $orderNumber . "/Unlock/", "GET");
     }
 
+    /**
+     * @throws Exception
+     */
     public function fulfillSalesOrder($orderNumber, $date) {
         if(is_null($orderNumber) || is_null($date)) {
             return 'The salesOrderNumber and date fields are mandatory.';
@@ -149,6 +175,9 @@ class Client
         return $this->sendRequest("api/SalesOrder/" . $orderNumber . "/Fulfill/", "GET", $params);
     }
 
+    /**
+     * @throws Exception
+     */
     public function retrieveAllPurchaseOrders($start, $limit, $changeDate = null)
     {
         if ($limit > 500) return "Limit is higher than allowed. The maximum amount of purchase orders is 500.";
@@ -162,11 +191,17 @@ class Client
         return $this->sendRequest("api/PurchaseOrder", "GET", $params);
     }
 
+    /**
+     * @throws Exception
+     */
     public function retrievePurchaseOrder($orderNumber)
     {
         return $this->sendRequest("api/PurchaseOrder/ByNumber/" . $orderNumber, "GET");
     }
 
+    /**
+     * @throws Exception
+     */
     public function getItemStock($itemCode = null, $warehouse = null, $start = null, $limit = null, $stockDate = null, $changeDate = null)
     {
         $params = array(
@@ -180,6 +215,9 @@ class Client
         return $this->sendRequest("api/Stock/Current", "GET", $params);
     }
 
+    /**
+     * @throws Exception
+     */
     public function sendCustomQuery($query)
     {
         $verificationCode = json_decode($this->sendRequest("api/CustomQuery", "GET", [], $query));
@@ -193,11 +231,17 @@ class Client
         return $this->sendRequest("api/CustomQuery", "POST", [], json_encode($post));
     }
 
+    /**
+     * @throws Exception
+     */
     public function updateItem($data)
     {
         return $this->sendRequest("api/Item", "PUT", [], $data);
     }
 
+    /**
+     * @throws Exception
+     */
     public function newStockCount($itemcode, $quantity, $grtbk, $description = null)
     {
         $data = array(
