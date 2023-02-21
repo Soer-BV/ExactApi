@@ -99,6 +99,11 @@ class Client
             return $this->sendRequest("api/Account/ByCred/" . $code, "GET");
      }
 
+     public function getDebtorInfo($code)
+     {
+         return $this->sendRequest("api/Account/ByDeb/" . $code, "GET");
+     }
+
      public function getAllAccounts($start, $limit, $changeDate = null, $customerType = null)
      {
          if ($limit > 500) return "Limit is higher than allowed. The maximum amount of accounts is 500.";
