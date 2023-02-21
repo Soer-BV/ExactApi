@@ -96,7 +96,7 @@ class Client
 
      public function getSupplierInfo($code)
      {
-            return $this->sendRequest("api/Account/ByCred/" . $code, "GET");
+         return $this->sendRequest("api/Account/ByCred/" . $code, "GET");
      }
 
      public function getDebtorInfo($code)
