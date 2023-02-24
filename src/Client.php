@@ -260,4 +260,74 @@ class Client
         return $this->sendRequest("/api/Stock", "POST", [], $data);
     }
 
+
+    /**
+     * PRICELIST
+     * These function can be used the get, update or create a pricelist.
+     */
+
+    /**
+     * Get PriceList
+     * @throws Exception
+     */
+    public function getPriceList($itemCode = null, $debtorNumber = null, $modified = null)
+    {
+        $params = array(
+            'itemCode' => $itemCode,
+            'debtorNumber' => $debtorNumber,
+            'modified' => $modified,
+        );
+
+        return $this->sendRequest('/api/PriceList', "GET", $params);
+    }
+
+    /**
+     * Get all staffels from a singular PriceList
+     * @throws Exception
+     */
+    public function getPriceListByCode($code, $start, $take)
+    {
+        $params = array(
+            'code' => $code,
+            'start' => $start,
+            'take' => $take,
+        );
+
+        return $this->sendRequest('/api/PriceList/ByCode', "GET", $params);
+    }
+
+    /**
+     * Get item price for debtor
+     * @throws Exception
+     */
+    public function getDebtorItemPrice($itemCode, $debtorNumber, $quantity, $priceDate)
+    {
+        $params = array(
+            'itemCode' => $itemCode,
+            'debtorNumber' => $debtorNumber,
+            'quantity' => $quantity,
+            'priceDate' => $priceDate
+        );
+
+        return $this->sendRequest('/api/PriceList/ItemPrice', "GET", $params);
+    }
+
+    /**
+     * Update a PriceList
+     * @throws Exception
+     */
+    public function updatePriceList($data)
+    {
+        return $this->sendRequest("api/Item", "PUT", [], $data);
+    }
+
+    /**
+     * Create a new PriceList
+     * @throws Exception
+     */
+    public function newPriceList($data)
+    {
+        return $this->sendRequest("api/Item", "POST", [], $data);
+    }
+
 }
