@@ -119,6 +119,24 @@ class Client
      }
 
     /**
+     * Create a new creditor or debtor in the Exact Globe administration
+     * @throws Exception
+     */
+    public function createNewAccount($data)
+     {
+         return $this->sendRequest('api/Account', 'POST', [], $data);
+     }
+
+    /**
+     * Update account data in the Exact Globe Administration based on AccountCode
+     * @throws Exception
+     */
+    public function updateAccount($data)
+     {
+         return $this->sendRequest('api/Account', 'PUT', [], $data);
+     }
+
+    /**
      * @throws Exception
      */
     public function retrieveSalesOrder($orderNumber)
