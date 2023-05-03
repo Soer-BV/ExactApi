@@ -147,7 +147,7 @@ class Client
      */
     public function createSalesOrder($data)
     {
-        return $this->sendRequest("/api/SalesOrder", "POST", [], $data);
+        return $this->sendRequest("api/SalesOrder", "POST", [], $data);
     }
 
     /**
@@ -257,7 +257,7 @@ class Client
             'GLAccountCost' => $grtbk
         );
 
-        return $this->sendRequest("/api/Stock", "POST", [], $data);
+        return $this->sendRequest("api/Stock", "POST", [], $data);
     }
 
 
@@ -278,7 +278,7 @@ class Client
             'modified' => $modified,
         );
 
-        return $this->sendRequest('/api/PriceList', "GET", $params);
+        return $this->sendRequest('api/PriceList', "GET", $params);
     }
 
     /**
@@ -293,7 +293,16 @@ class Client
             'take' => $take,
         );
 
-        return $this->sendRequest('/api/PriceList/ByCode', "GET", $params);
+        return $this->sendRequest('api/PriceList/ByCode', "GET", $params);
+    }
+
+    /**
+     * Get all pricelists that exist in the Exact Globe administration
+     * @throws Exception
+     */
+    public function getAllPriceLists()
+    {
+        return $this->sendRequest('api/PriceList/GetAll', "GET");
     }
 
     /**
@@ -309,7 +318,7 @@ class Client
             'priceDate' => $priceDate
         );
 
-        return $this->sendRequest('/api/PriceList/ItemPrice', "GET", $params);
+        return $this->sendRequest('api/PriceList/ItemPrice', "GET", $params);
     }
 
     /**
@@ -329,5 +338,6 @@ class Client
     {
         return $this->sendRequest("api/Item", "POST", [], $data);
     }
+    
 
 }
