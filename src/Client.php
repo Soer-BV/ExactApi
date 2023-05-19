@@ -91,7 +91,10 @@ class Client
       */
      public function getItemByCode($code)
      {
-         return $this->sendRequest("api/Item/ByItemCode/" . $code, "GET");
+         $params = array(
+             'itemCode' => $code,
+         );
+         return $this->sendRequest("api/Item/ByItemCode", "GET", $params);
      }
 
      public function getSupplierInfo($code)
