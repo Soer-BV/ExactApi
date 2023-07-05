@@ -348,7 +348,7 @@ class Client
      */
     public function updatePriceList($data)
     {
-        return $this->sendRequest("api/Item", "PUT", [], $data);
+        return $this->sendRequest("api/PriceList", "PUT", [], $data);
     }
 
     /**
@@ -357,7 +357,7 @@ class Client
      */
     public function newPriceList($data)
     {
-        return $this->sendRequest("api/Item", "POST", [], $data);
+        return $this->sendRequest("api/PriceList", "POST", [], $data);
     }
     
 
