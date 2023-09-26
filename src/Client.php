@@ -150,14 +150,14 @@ class Client
     /**
      * @throws Exception
      */
-    public function retrieveAllSalesOrders($start, $limit, $changeDate = null)
+    public function retrieveAllSalesOrders($start, $limit, $modifiedDate = null)
     {
         if ($limit > 500) return "Limit is higher than allowed. The maximum amount of sales orders is 500.";
 
         $params = array(
             'skip' => $start,
             'take' => $limit,
-            'modified' => $changeDate
+            'modified' => $modifiedDate
         );
 
         return $this->sendRequest('api/SalesOrder', 'GET', $params);
@@ -204,14 +204,14 @@ class Client
     /**
      * @throws Exception
      */
-    public function retrieveAllPurchaseOrders($start, $limit, $changeDate = null)
+    public function retrieveAllPurchaseOrders($start, $limit, $modifiedDate = null)
     {
         if ($limit > 500) return "Limit is higher than allowed. The maximum amount of purchase orders is 500.";
 
         $params = array(
             'skip' => $start,
             'take' => $limit,
-            'changeDate' => $changeDate
+            'modified' => $modifiedDate
         );
 
         return $this->sendRequest("api/PurchaseOrder", "GET", $params);
