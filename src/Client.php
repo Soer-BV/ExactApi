@@ -217,6 +217,11 @@ class Client
         return $this->sendRequest("api/PurchaseOrder", "GET", $params);
     }
 
+    public function receiptPurchaseOrderPartially($data)
+    {
+        return $this->sendRequest("api/PurchaseOrder/ReceiptPartial", "POST", [], $data);
+    }
+
     /**
      * @throws Exception
      */
