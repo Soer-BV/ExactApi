@@ -201,6 +201,11 @@ class Client
         return $this->sendRequest("api/SalesOrder/" . $orderNumber . "/Fulfill/", "GET", $params);
     }
 
+     public function fulfillSalesOrderPartially($data)
+    {
+        return $this->sendRequest("api/SalesOrder/FulfillPartial", "POST", [], $data);
+    }
+
     /**
      * @throws Exception
      */
