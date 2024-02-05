@@ -107,6 +107,19 @@ class Client
          return $this->sendRequest("api/Account/ByDeb/" . $code, "GET");
      }
 
+     public function getDebtorBalance($skip = 0, $take = 0, $debtorNumber = '', $details = false, $expiredReceivables = false)
+     {
+         $params = array(
+             'skip' => $skip,
+             'take' => $take,
+             'debtorNumber' => $debtorNumber,
+             'details' => $details,
+             'expiredReceivables' => $expiredReceivables
+         );
+
+         return $this->sendRequest("api/DebtorBalance", "GET", $params);
+     }
+
      public function getAllAccounts($start, $limit, $changeDate = null, $customerType = null)
      {
          if ($limit > 500) return "Limit is higher than allowed. The maximum amount of accounts is 500.";
