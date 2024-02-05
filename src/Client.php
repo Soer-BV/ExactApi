@@ -117,7 +117,7 @@ class Client
              'expiredReceivables' => $expiredReceivables
          );
 
-         return $this->sendRequest("api/DebtorBalance", "GET", $params);
+         return $this->sendRequest("api/Account/DebtorBalance", "GET", $params);
      }
 
      public function getAllAccounts($start, $limit, $changeDate = null, $customerType = null)
