@@ -283,6 +283,14 @@ class Client
     /**
      * @throws Exception
      */
+    public function createItem($data)
+    {
+        return $this->sendRequest("api/Item", "POST", [], $data);
+    }
+
+    /**
+     * @throws Exception
+     */
     public function updateItem($data)
     {
         return $this->sendRequest("api/Item", "PUT", [], $data);
