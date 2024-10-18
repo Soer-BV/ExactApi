@@ -295,6 +295,18 @@ class Client
     {
         return $this->sendRequest("api/Item", "PUT", [], $data);
     }
+    public function getItemAccountByCode($code)
+    {
+        $params = array(
+            'itemCode' => $code,
+        );
+        return $this->sendRequest("api/ItemAccount/ByItem", "GET", $params);
+    }
+
+    public function createItemAccount($data)
+    {
+        return $this->sendRequest("api/ItemAccount", "POST", [], $data);
+    }
 
     /**
      * @throws Exception
