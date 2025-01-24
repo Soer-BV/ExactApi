@@ -256,7 +256,7 @@ class Client
         $params = array(
             'itemCode' => $itemCode,
             'warehouse' => $warehouse,
-            'skip' => $start,
+            'start' => $start,
             'limit' => $limit,
             'stockDate' => $stockDate,
             'changeDate' => $changeDate
