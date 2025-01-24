@@ -187,6 +187,14 @@ class Client
     /**
      * @throws Exception
      */
+    public function createPurchaseOrder($data)
+    {
+        return $this->sendRequest("api/PurchaseOrder", "POST", [], $data);
+    }
+
+    /**
+     * @throws Exception
+     */
     public function lockSalesOrder($orderNumber)
     {
         return $this->sendRequest("api/SalesOrder/" . $orderNumber . "/Lock/", "GET");
