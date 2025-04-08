@@ -250,7 +250,7 @@ class Client
 
     public function receiptPurchaseOrder($purchaseOrderNumber)
     {
-        return $this->sendRequest("api/PurchaseOrder" . $purchaseOrderNumber . "/Receipt/", "POST");
+        return $this->sendRequest("api/PurchaseOrder/" . $purchaseOrderNumber . "/Receipt/", "POST");
     }
 
     /**
