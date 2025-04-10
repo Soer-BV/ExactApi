@@ -250,7 +250,10 @@ class Client
 
     public function receiptPurchaseOrder($purchaseOrderNumber, $processDate)
     {
-        return $this->sendRequest("api/PurchaseOrder/" . $purchaseOrderNumber . "/Receipt?processDate=" . $processDate, "POST");
+        $params = [
+            'processDate' => $processDate
+        ];
+        return $this->sendRequest("api/PurchaseOrder/" . $purchaseOrderNumber . "/Receipt", "POST", $params);
     }
 
     /**
