@@ -264,6 +264,7 @@ class Client
             'PrintDestination' => '2',
             'PrintLayout' => $printLayout
         ];
+        return $this->sendRequest("api/PurchaseOrder/Print", "POST", [], $params);
     }
 
     /**
