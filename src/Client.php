@@ -256,6 +256,16 @@ class Client
         return $this->sendRequest("api/PurchaseOrder/" . $purchaseOrderNumber . "/Receipt", "POST", $params);
     }
 
+    public function printPurchaseOrder($purchaseOrderNumber, $printLayout)
+    {
+        $params = [
+            'PurchaseOrderNumber' => $purchaseOrderNumber,
+            'ProcessMode' => '1',
+            'PrintDestination' => '2',
+            'PrintLayout' => $printLayout
+        ];
+    }
+
     /**
      * @throws Exception
      */
