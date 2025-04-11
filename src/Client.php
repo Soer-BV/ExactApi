@@ -260,7 +260,7 @@ class Client
     {
         $params = [
             'PurchaseOrderNumber' => $purchaseOrderNumber,
-            'ProcessMode' => '1',
+            'ProcessMode' => '0',
             'PrintDestination' => '2',
             'PrintLayout' => $printLayout
         ];
