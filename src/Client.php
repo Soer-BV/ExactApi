@@ -324,7 +324,7 @@ class Client
     }
     public function getItemAccountByCode($code)
     {
-        return $this->sendRequest("api/ItemAccount/ByItem" . $code, "GET");
+        return $this->sendRequest("api/ItemAccount/ByItem/" . $code, "GET");
     }
 
     public function createItemAccount($data)
@@ -434,4 +434,5 @@ class Client
     
 
 }
+
 
