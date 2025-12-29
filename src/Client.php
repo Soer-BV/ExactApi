@@ -153,6 +153,15 @@ class Client
      }
 
     /**
+     * Update the node of an account
+     * @throws Exception
+     */
+    public function updateNote($id, $data)
+     {
+         return $this->sendRequest("api/Account/" . $id . "/UpdateNote", 'POST', [], $data);
+     }
+
+    /**
      * @throws Exception
      */
     public function retrieveSalesOrder($orderNumber)
@@ -434,5 +443,6 @@ class Client
     
 
 }
+
 
 
