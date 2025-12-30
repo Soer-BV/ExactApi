@@ -39,7 +39,7 @@ class Client
             case "PUT":
                 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
                 if ($data) {
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
                 }
                 break;
             default:
@@ -443,6 +443,7 @@ class Client
     
 
 }
+
 
 
 
