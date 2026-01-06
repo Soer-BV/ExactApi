@@ -196,9 +196,41 @@ class Client
     /**
      * @throws Exception
      */
+    public function updateSalesOrderHeader($data)
+    {
+        return $this->sendRequest("api/SalesOrder/Header", "PUT", [], $data);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function updateSalesOrderLine($data)
+    {
+        return $this->sendRequest("api/SalesOrder/Line", "PUT", [], $data);
+    }
+
+    /**
+     * @throws Exception
+     */
     public function createPurchaseOrder($data)
     {
         return $this->sendRequest("api/PurchaseOrder", "POST", [], $data);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function updatePurchaseOrderHeader($data)
+    {
+        return $this->sendRequest("api/PurchaseOrder/Header", "PUT", [], $data);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function updatePurchaseOrderLine($data)
+    {
+        return $this->sendRequest("api/PurchaseOrder/Line", "PUT", [], $data);
     }
 
     /**
@@ -443,6 +475,7 @@ class Client
     
 
 }
+
 
 
 
