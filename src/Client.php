@@ -236,6 +236,14 @@ class Client
     /**
      * @throws Exception
      */
+    public function authorizePurchaseOrder($orderNumber)
+    {
+        return $this->sendRequest("api/PurchaseOrder/" . $orderNumber . "/Authorize/", "GET");
+    }
+
+    /**
+     * @throws Exception
+     */
     public function lockSalesOrder($orderNumber)
     {
         return $this->sendRequest("api/SalesOrder/" . $orderNumber . "/Lock/", "GET");
@@ -475,6 +483,7 @@ class Client
     
 
 }
+
 
 
 
